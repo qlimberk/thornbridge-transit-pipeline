@@ -1,4 +1,4 @@
-name: FleetSense CI
+name: "FleetSense - Week 2: Data Pipeline & Quality Validation"
 on: [push, pull_request]
 jobs:
   test:
