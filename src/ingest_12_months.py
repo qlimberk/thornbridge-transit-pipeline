@@ -12,16 +12,10 @@ RAW_DATA_DIR = PROJECT_ROOT / "data" / "raw"
 RAW_DATA_DIR.mkdir(parents=True, exist_ok=True)
 
 # Months: January to December 2024
-MONTHS = [
-    f"2024-{month:02d}"
-    for month in range(1, 13)
-]
+MONTHS = [f"2024-{month:02d}" for month in range(1, 13)]
 
 # NYC Taxi Zone Lookup URL
-ZONE_URL = (
-    "https://d37ci6vzurychx.cloudfront.net/misc/"
-    "taxi_zone_lookup.csv"
-)
+ZONE_URL = "https://d37ci6vzurychx.cloudfront.net/misc/taxi_zone_lookup.csv"
 
 ZONE_FILE = RAW_DATA_DIR / "taxi_zone_lookup.csv"
 
@@ -65,7 +59,6 @@ def ingest_12_months():
 
     # Download monthly Yellow Taxi datasets
     for month in MONTHS:
-
         file_name = f"yellow_tripdata_{month}.parquet"
 
         file_path = RAW_DATA_DIR / file_name

@@ -1,9 +1,6 @@
 import duckdb
 
-con = duckdb.connect(
-    "data/processed/fleetsense.duckdb",
-    read_only=True
-)
+con = duckdb.connect("data/processed/fleetsense.duckdb", read_only=True)
 
 print("Negative Total Amount Analysis")
 print("--------------------------------")
@@ -18,7 +15,6 @@ queries = {
         GROUP BY VendorID
         ORDER BY total_records DESC
     """,
-
     "Payment Type Distribution": """
         SELECT
             payment_type,
@@ -28,7 +24,6 @@ queries = {
         GROUP BY payment_type
         ORDER BY total_records DESC
     """,
-
     "Trip Distance Analysis": """
         SELECT
             COUNT(*) AS total_records,
@@ -38,7 +33,6 @@ queries = {
         FROM trips
         WHERE total_amount < 0
     """,
-
     "Negative Amount Range": """
         SELECT
             MIN(total_amount) AS minimum_amount,
@@ -46,7 +40,7 @@ queries = {
             AVG(total_amount) AS average_amount
         FROM trips
         WHERE total_amount < 0
-    """
+    """,
 }
 
 for title, query in queries.items():

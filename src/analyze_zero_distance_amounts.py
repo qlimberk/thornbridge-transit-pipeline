@@ -1,9 +1,6 @@
 import duckdb
 
-con = duckdb.connect(
-    "data/processed/fleetsense.duckdb",
-    read_only=True
-)
+con = duckdb.connect("data/processed/fleetsense.duckdb", read_only=True)
 
 print("Zero-Distance Records - Total Amount Analysis")
 print("----------------------------------------------")

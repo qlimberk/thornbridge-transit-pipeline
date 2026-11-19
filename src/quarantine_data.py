@@ -6,9 +6,7 @@ import duckdb
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 
 # Dataset path
-DATA_GLOB = (
-    PROJECT_ROOT / "data" / "raw" / "yellow_tripdata_2024-*.parquet"
-).as_posix()
+DATA_GLOB = (PROJECT_ROOT / "data" / "raw" / "yellow_tripdata_2024-*.parquet").as_posix()
 
 # Database path
 DB_PATH = PROJECT_ROOT / "data" / "processed" / "fleetsense.duckdb"

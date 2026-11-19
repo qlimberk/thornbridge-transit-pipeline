@@ -6,9 +6,7 @@ import duckdb
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 
 # 12-month dataset path
-DATA_GLOB = (
-    PROJECT_ROOT / "data" / "raw" / "yellow_tripdata_2024-*.parquet"
-).as_posix()
+DATA_GLOB = (PROJECT_ROOT / "data" / "raw" / "yellow_tripdata_2024-*.parquet").as_posix()
 
 # Persistent Database path
 DB_DIR = PROJECT_ROOT / "data" / "processed"
@@ -22,9 +20,7 @@ print("FleetSense Data Validation")
 print("--------------------------")
 
 # Check whether dataset files exist
-files = list((PROJECT_ROOT / "data" / "raw").glob(
-    "yellow_tripdata_2024-*.parquet"
-))
+files = list((PROJECT_ROOT / "data" / "raw").glob("yellow_tripdata_2024-*.parquet"))
 
 if not files:
     raise FileNotFoundError("No Parquet dataset files found!")

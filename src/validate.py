@@ -9,13 +9,9 @@ DB_PATH = Path("data/fleetsense.duckdb")
 
 def validate_month(month: str) -> dict[str, int]:
     con = duckdb.connect(str(DB_PATH))
-    df = con.execute(
-        "SELECT * FROM raw_trips WHERE source_month = ?", [month]
-    ).pl()
+    df = con.execute("SELECT * FROM raw_trips WHERE source_month = ?", [month]).pl()
 
-    valid_zones = set(
-        con.execute("SELECT LocationID FROM dim_zones").pl()["LocationID"].to_list()
-    )
+    valid_zones = set(con.execute("SELECT LocationID FROM dim_zones").pl()["LocationID"].to_list())
 
     # Flag invalid conditions (NFR-02: quarantine with reason code)
     df = df.with_columns(
@@ -25,7 +21,9 @@ def validate_month(month: str) -> dict[str, int]:
         .then(pl.lit("NEGATIVE_FARE"))
         .when(pl.col("trip_distance") <= 0)
         .then(pl.lit("NON_POSITIVE_DISTANCE"))
-        .when(~pl.col("PULocationID").is_in(valid_zones) | ~pl.col("DOLocationID").is_in(valid_zones))
+        .when(
+            ~pl.col("PULocationID").is_in(valid_zones) | ~pl.col("DOLocationID").is_in(valid_zones)
+        )
         .then(pl.lit("UNKNOWN_ZONE_ID"))
         .otherwise(pl.lit(None))
         .alias("quarantine_reason")
@@ -39,7 +37,9 @@ def validate_month(month: str) -> dict[str, int]:
     con.execute("DELETE FROM clean_trips WHERE source_month = ?", [month])
     con.execute("INSERT INTO clean_trips SELECT * FROM clean_df")
 
-    con.execute("CREATE TABLE IF NOT EXISTS quarantined_trips AS SELECT * FROM quarantine_df LIMIT 0")
+    con.execute(
+        "CREATE TABLE IF NOT EXISTS quarantined_trips AS SELECT * FROM quarantine_df LIMIT 0"
+    )
     con.execute("DELETE FROM quarantined_trips WHERE source_month = ?", [month])
     con.execute("INSERT INTO quarantined_trips SELECT * FROM quarantine_df")
 
@@ -49,7 +49,9 @@ def validate_month(month: str) -> dict[str, int]:
         "rows_clean": len(clean_df),
         "rows_quarantined": len(quarantine_df),
     }
-    print(f"[QUALITY {month}] In: {stats['rows_in']:,} | Clean: {stats['rows_clean']:,} | Quarantined: {stats['rows_quarantined']:,}")
+    print(
+        f"[QUALITY {month}] In: {stats['rows_in']:,} | Clean: {stats['rows_clean']:,} | Quarantined: {stats['rows_quarantined']:,}"
+    )
     return stats
 
 

@@ -6,37 +6,26 @@ import duckdb
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 
 # 12-month dataset path
-DATA_GLOB = (
-    PROJECT_ROOT / "data" / "raw" / "yellow_tripdata_2024-*.parquet"
-).as_posix()
+DATA_GLOB = (PROJECT_ROOT / "data" / "raw" / "yellow_tripdata_2024-*.parquet").as_posix()
 
 # Database path
 DB_PATH = PROJECT_ROOT / "data" / "processed" / "fleetsense.duckdb"
 
 # Check dataset files
-files = list(
-    (PROJECT_ROOT / "data" / "raw").glob(
-        "yellow_tripdata_2024-*.parquet"
-    )
-)
+files = list((PROJECT_ROOT / "data" / "raw").glob("yellow_tripdata_2024-*.parquet"))
 
 if len(files) != 12:
-    raise FileNotFoundError(
-        f"Expected 12 Parquet files, found {len(files)}"
-    )
+    raise FileNotFoundError(f"Expected 12 Parquet files, found {len(files)}")
 
 # Connect to persistent DuckDB database
 con = duckdb.connect(str(DB_PATH))
 
 try:
-
     print("FleetSense Trip Processing")
     print("--------------------------")
 
     # Verify quarantine table exists
-    tables = [
-        row[0] for row in con.execute("SHOW TABLES").fetchall()
-    ]
+    tables = [row[0] for row in con.execute("SHOW TABLES").fetchall()]
 
     if "quarantine_trips" not in tables:
         raise RuntimeError("quarantine_trips table not found!")
@@ -96,10 +85,7 @@ try:
     print("Valid trip records:", valid_count)
     print("Quarantined records:", quarantine_after)
 
-    print(
-        "Total processed records:",
-        valid_count + quarantine_after
-    )
+    print("Total processed records:", valid_count + quarantine_after)
 
     # Final verification
     if total_records == valid_count + quarantine_after:
