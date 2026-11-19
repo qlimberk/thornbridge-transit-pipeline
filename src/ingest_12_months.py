@@ -1,9 +1,8 @@
 from pathlib import Path
-from urllib.request import urlopen
 from shutil import copyfileobj
+from urllib.request import urlopen
 
 from get_month_url import get_month_url
-
 
 # Project root
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
@@ -38,9 +37,8 @@ def download_file(url, file_path):
     try:
         print(f"Downloading: {file_path.name}")
 
-        with urlopen(url, timeout=60) as response:
-            with open(temp_path, "wb") as output:
-                copyfileobj(response, output)
+        with urlopen(url, timeout=60) as response, open(temp_path, "wb") as output:
+            copyfileobj(response, output)
 
         if temp_path.stat().st_size == 0:
             raise ValueError("Downloaded file is empty.")
