@@ -1,0 +1,10 @@
+pyproject.toml
+src/__init__.py
+src/ingest.py
+src/validate.py
+src/fleetsense.egg-info/PKG-INFO
+src/fleetsense.egg-info/SOURCES.txt
+src/fleetsense.egg-info/dependency_links.txt
+src/fleetsense.egg-info/requires.txt
+src/fleetsense.egg-info/top_level.txt
+tests/test_pipeline.py
