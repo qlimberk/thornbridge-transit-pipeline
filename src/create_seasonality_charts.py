@@ -3,7 +3,6 @@
 import altair as alt
 import duckdb
 
-
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 DATABASE_PATH = PROJECT_ROOT / "data" / "processed" / "fleetsense.duckdb"
 REPORTS_DIR = PROJECT_ROOT / "reports"
