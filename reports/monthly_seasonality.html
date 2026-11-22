@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    #vis.vega-embed {
+      width: 100%;
+      display: flex;
+    }
+
+    #vis.vega-embed details,
+    #vis.vega-embed details summary {
+      position: relative;
+    }
+  </style>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega@6"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-lite@6.4.1"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-embed@7"></script>
+</head>
+<body>
+  <div id="vis"></div>
+  <script>
+    (function(vegaEmbed) {
+      var spec = {"config": {"view": {"continuousWidth": 300, "continuousHeight": 300}}, "data": {"values": [{"month_number": 1, "month_name": "January", "total_trips": 2964581}, {"month_number": 2, "month_name": "February", "total_trips": 3007527}, {"month_number": 3, "month_name": "March", "total_trips": 3582496}, {"month_number": 4, "month_name": "April", "total_trips": 3514225}, {"month_number": 5, "month_name": "May", "total_trips": 3723801}, {"month_number": 6, "month_name": "June", "total_trips": 3539164}, {"month_number": 7, "month_name": "July", "total_trips": 3076871}, {"month_number": 8, "month_name": "August", "total_trips": 2979183}, {"month_number": 9, "month_name": "September", "total_trips": 3632980}, {"month_number": 10, "month_name": "October", "total_trips": 3833741}, {"month_number": 11, "month_name": "November", "total_trips": 3645294}, {"month_number": 12, "month_name": "December", "total_trips": 3668282}]}, "mark": {"type": "bar"}, "encoding": {"tooltip": [{"field": "month_name", "title": "Month", "type": "ordinal"}, {"field": "total_trips", "format": ",", "title": "Total Trips", "type": "quantitative"}], "x": {"axis": {"labelAngle": 0}, "field": "month_name", "sort": null, "title": "Month", "type": "ordinal"}, "y": {"field": "total_trips", "title": "Total Trips", "type": "quantitative"}}, "height": 400, "title": "Pickup Trips by Month (All Years Combined)", "width": 700, "$schema": "https://vega.github.io/schema/vega-lite/v6.4.1.json"};
+      var embedOpt = {"mode": "vega-lite"};
+
+      function showError(el, error){
+          el.innerHTML = ('<div style="color:red;">'
+                          + '<p>JavaScript Error: ' + error.message + '</p>'
+                          + "<p>This usually means there's a typo in your chart specification. "
+                          + "See the javascript console for the full traceback.</p>"
+                          + '</div>');
+          throw error;
+      }
+      const el = document.getElementById('vis');
+      vegaEmbed("#vis", spec, embedOpt)
+        .catch(error => showError(el, error));
+    })(vegaEmbed);
+
+  </script>
+</body>
+</html>

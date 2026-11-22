@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    #vis.vega-embed {
+      width: 100%;
+      display: flex;
+    }
+
+    #vis.vega-embed details,
+    #vis.vega-embed details summary {
+      position: relative;
+    }
+  </style>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega@6"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-lite@6.4.1"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-embed@7"></script>
+</head>
+<body>
+  <div id="vis"></div>
+  <script>
+    (function(vegaEmbed) {
+      var spec = {"config": {"view": {"continuousWidth": 300, "continuousHeight": 300}}, "data": {"values": [{"DOLocationID": 110, "total_trips": 3}, {"DOLocationID": 105, "total_trips": 7}, {"DOLocationID": 99, "total_trips": 11}, {"DOLocationID": 2, "total_trips": 81}, {"DOLocationID": 5, "total_trips": 184}, {"DOLocationID": 44, "total_trips": 184}, {"DOLocationID": 204, "total_trips": 197}, {"DOLocationID": 59, "total_trips": 274}, {"DOLocationID": 176, "total_trips": 300}, {"DOLocationID": 187, "total_trips": 327}]}, "mark": {"type": "bar"}, "encoding": {"tooltip": [{"field": "DOLocationID", "title": "Drop-off Location ID", "type": "ordinal"}, {"field": "total_trips", "format": ",", "title": "Total Trips", "type": "quantitative"}], "x": {"axis": {"labelAngle": 0}, "field": "DOLocationID", "sort": null, "title": "Drop-off Location ID", "type": "ordinal"}, "y": {"field": "total_trips", "title": "Total Trips", "type": "quantitative"}}, "height": 400, "title": "Bottom 10 Drop-off Zones", "width": 700, "$schema": "https://vega.github.io/schema/vega-lite/v6.4.1.json"};
+      var embedOpt = {"mode": "vega-lite"};
+
+      function showError(el, error){
+          el.innerHTML = ('<div style="color:red;">'
+                          + '<p>JavaScript Error: ' + error.message + '</p>'
+                          + "<p>This usually means there's a typo in your chart specification. "
+                          + "See the javascript console for the full traceback.</p>"
+                          + '</div>');
+          throw error;
+      }
+      const el = document.getElementById('vis');
+      vegaEmbed("#vis", spec, embedOpt)
+        .catch(error => showError(el, error));
+    })(vegaEmbed);
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    #vis.vega-embed {
+      width: 100%;
+      display: flex;
+    }
+
+    #vis.vega-embed details,
+    #vis.vega-embed details summary {
+      position: relative;
+    }
+  </style>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega@6"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-lite@6.4.1"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-embed@7"></script>
+</head>
+<body>
+  <div id="vis"></div>
+  <script>
+    (function(vegaEmbed) {
+      var spec = {"config": {"view": {"continuousWidth": 300, "continuousHeight": 300}}, "data": {"values": [{"pickup_hour": 0, "total_trips": 1192032}, {"pickup_hour": 1, "total_trips": 774041}, {"pickup_hour": 2, "total_trips": 504181}, {"pickup_hour": 3, "total_trips": 331788}, {"pickup_hour": 4, "total_trips": 243796}, {"pickup_hour": 5, "total_trips": 264376}, {"pickup_hour": 6, "total_trips": 586366}, {"pickup_hour": 7, "total_trips": 1133866}, {"pickup_hour": 8, "total_trips": 1562628}, {"pickup_hour": 9, "total_trips": 1709167}, {"pickup_hour": 10, "total_trips": 1831527}, {"pickup_hour": 11, "total_trips": 1991210}, {"pickup_hour": 12, "total_trips": 2178729}, {"pickup_hour": 13, "total_trips": 2266903}, {"pickup_hour": 14, "total_trips": 2432565}, {"pickup_hour": 15, "total_trips": 2512053}, {"pickup_hour": 16, "total_trips": 2561444}, {"pickup_hour": 17, "total_trips": 2813247}, {"pickup_hour": 18, "total_trips": 2955724}, {"pickup_hour": 19, "total_trips": 2598184}, {"pickup_hour": 20, "total_trips": 2358273}, {"pickup_hour": 21, "total_trips": 2405749}, {"pickup_hour": 22, "total_trips": 2228346}, {"pickup_hour": 23, "total_trips": 1731950}]}, "mark": {"type": "bar"}, "encoding": {"tooltip": [{"field": "pickup_hour", "title": "Pickup Hour", "type": "ordinal"}, {"field": "total_trips", "format": ",", "title": "Total Trips", "type": "quantitative"}], "x": {"axis": {"labelAngle": 0}, "field": "pickup_hour", "sort": null, "title": "Pickup Hour", "type": "ordinal"}, "y": {"field": "total_trips", "title": "Total Trips", "type": "quantitative"}}, "height": 400, "title": "Pickup Trips by Hour", "width": 700, "$schema": "https://vega.github.io/schema/vega-lite/v6.4.1.json"};
+      var embedOpt = {"mode": "vega-lite"};
+
+      function showError(el, error){
+          el.innerHTML = ('<div style="color:red;">'
+                          + '<p>JavaScript Error: ' + error.message + '</p>'
+                          + "<p>This usually means there's a typo in your chart specification. "
+                          + "See the javascript console for the full traceback.</p>"
+                          + '</div>');
+          throw error;
+      }
+      const el = document.getElementById('vis');
+      vegaEmbed("#vis", spec, embedOpt)
+        .catch(error => showError(el, error));
+    })(vegaEmbed);
+
+  </script>
+</body>
+</html>

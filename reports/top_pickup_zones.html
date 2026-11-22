@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    #vis.vega-embed {
+      width: 100%;
+      display: flex;
+    }
+
+    #vis.vega-embed details,
+    #vis.vega-embed details summary {
+      position: relative;
+    }
+  </style>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega@6"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-lite@6.4.1"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-embed@7"></script>
+</head>
+<body>
+  <div id="vis"></div>
+  <script>
+    (function(vegaEmbed) {
+      var spec = {"config": {"view": {"continuousWidth": 300, "continuousHeight": 300}}, "data": {"values": [{"PULocationID": 132, "total_trips": 1989966}, {"PULocationID": 237, "total_trips": 1915439}, {"PULocationID": 161, "total_trips": 1914592}, {"PULocationID": 236, "total_trips": 1729893}, {"PULocationID": 162, "total_trips": 1418842}, {"PULocationID": 230, "total_trips": 1391135}, {"PULocationID": 186, "total_trips": 1362136}, {"PULocationID": 142, "total_trips": 1314686}, {"PULocationID": 138, "total_trips": 1295508}, {"PULocationID": 170, "total_trips": 1176576}]}, "mark": {"type": "bar"}, "encoding": {"tooltip": [{"field": "PULocationID", "title": "Pickup Location ID", "type": "ordinal"}, {"field": "total_trips", "format": ",", "title": "Total Trips", "type": "quantitative"}], "x": {"axis": {"labelAngle": 0}, "field": "PULocationID", "sort": null, "title": "Pickup Location ID", "type": "ordinal"}, "y": {"field": "total_trips", "title": "Total Trips", "type": "quantitative"}}, "height": 400, "title": "Top 10 Pickup Zones", "width": 700, "$schema": "https://vega.github.io/schema/vega-lite/v6.4.1.json"};
+      var embedOpt = {"mode": "vega-lite"};
+
+      function showError(el, error){
+          el.innerHTML = ('<div style="color:red;">'
+                          + '<p>JavaScript Error: ' + error.message + '</p>'
+                          + "<p>This usually means there's a typo in your chart specification. "
+                          + "See the javascript console for the full traceback.</p>"
+                          + '</div>');
+          throw error;
+      }
+      const el = document.getElementById('vis');
+      vegaEmbed("#vis", spec, embedOpt)
+        .catch(error => showError(el, error));
+    })(vegaEmbed);
+
+  </script>
+</body>
+</html>
