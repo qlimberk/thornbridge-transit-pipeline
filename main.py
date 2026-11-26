@@ -1,6 +1,7 @@
 
-import pandas as pd
 import os
+
+import pandas as pd
 
 file_path = r"C:\Users\hp pavillion\fleetsense\raw\yellow_tripdata_2025-01.parquet"
 

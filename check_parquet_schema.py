@@ -1,6 +1,7 @@
 
-import duckdb
 import os
+
+import duckdb
 
 file_path = os.path.join(
     "data",

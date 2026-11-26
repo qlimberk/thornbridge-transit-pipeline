@@ -1,6 +1,7 @@
 
-import duckdb
 import os
+
+import duckdb
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 CSV_PATH = os.path.join(BASE_DIR, "raw", "taxi_zone_lookup.csv")

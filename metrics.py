@@ -1,7 +1,8 @@
 
-from pathlib import Path
-import pandas as pd
 import gc
+from pathlib import Path
+
+import pandas as pd
 
 # ==========================================
 # FLEETSENSE - WEEK 3 METRICS

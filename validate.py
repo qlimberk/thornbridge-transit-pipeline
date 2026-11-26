@@ -1,6 +1,7 @@
 
-import pandas as pd
 import os
+
+import pandas as pd
 
 # Load Dataset
 file_path = "raw/yellow_tripdata_2025-01.parquet"

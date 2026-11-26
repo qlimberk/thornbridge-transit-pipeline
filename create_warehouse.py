@@ -1,6 +1,7 @@
 
-import duckdb
 import os
+
+import duckdb
 
 # Project directory
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))

@@ -1,6 +1,7 @@
 
-import pandas as pd
 from pathlib import Path
+
+import pandas as pd
 
 Path("data/processed").mkdir(parents=True, exist_ok=True)
 
